@@ -66,23 +66,23 @@ class VehicleController extends Controller
         // return $id;
     }
 
-    public function adminStats(){
-        $totalV = vehicle::where('bin','!=',1)->count();
-        $totalRR = order::count();
-        $totalM = member::count();
-        $totalA = order::where('status','=','Approved')->count();
-        $totalD = order::where('status','=','Denied')->count();
-        $totalP = order::where('status','=','sent for approval')->count();
+    public function Stats(){
+        $totalVehicle = vehicle::where('bin','!=',1)->count();
+        $totalOrder = order::count();
+        $totalMember = member::count();
+        $totalApproved = order::where('status','=','Approved')->count();
+        $totalDenied = order::where('status','=','Denied')->count();
+        $totalPending = order::where('status','=','sent for approval')->count();
         
-        $statInfo=array(
-            'tVehicle' =>$totalV,
-            'tRentReq' =>$totalRR,
-            'tMember' =>$totalM,
-            'tPending' =>$totalP,
-            'tApproved' =>$totalA,
-            'tDenied' =>$totalD,
+        $stats=array(
+            'tV' =>$totalVehicle,
+            'tO' =>$totalOrder,
+            'tM' =>$totalMember,
+            'tP' =>$totalPending,
+            'tA' =>$totalApproved,
+            'tD' =>$totalDenied,
         );
-        return $statInfo; 
+        return $stats; 
     }
 
     public function homepageVehicles(){
